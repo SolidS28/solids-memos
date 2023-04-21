@@ -1,0 +1,17 @@
+package com.solids.springdemokotlin.controllers
+
+import com.solids.springdemokotlin.dtos.task.TaskRequestDto
+import com.solids.springdemokotlin.services.TaskService
+import org.springframework.web.bind.annotation.*
+
+@RestController
+@RequestMapping("/tasks")
+class TaskController(
+    val taskService: TaskService
+) {
+    @PostMapping
+    fun createTask(@RequestBody taskRequestDto: TaskRequestDto) = taskService.createTask(taskRequestDto)
+
+    @GetMapping("/{id}")
+    fun getTask(@PathVariable id: Long) = taskService.getTask(id)
+}
