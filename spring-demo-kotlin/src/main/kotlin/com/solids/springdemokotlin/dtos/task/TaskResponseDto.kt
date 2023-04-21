@@ -8,4 +8,5 @@ data class TaskResponseDto(
     override val url: String?
 ): TaskBaseDto(message, url) {
     constructor(task: Task) : this(task.id!!, task.message, task.url)
+    // TODO move to converter class to uncouple
 }
