@@ -7,6 +7,7 @@ import com.solids.springdemokotlin.dtos.task.TaskResponseDto
 import com.solids.springdemokotlin.enitites.Task
 import com.solids.springdemokotlin.exceptions.BadRequestException
 import com.solids.springdemokotlin.utils.isValidUrl
+import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
@@ -23,5 +24,7 @@ class TaskService(
 
     fun getTask(id: Long) = taskRepository.findByIdOrNull(id)
         ?: throw NotFoundException(Task::class.simpleName!!, "(id=$id)")
+
+    fun getAllTasks(pageParams: Pageable) = taskRepository.findAll(pageParams)
 
 }
