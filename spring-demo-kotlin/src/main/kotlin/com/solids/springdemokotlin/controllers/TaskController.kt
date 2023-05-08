@@ -20,5 +20,5 @@ class TaskController(
     fun getTask(@PathVariable id: Long) = taskService.getTask(id)
 
     @GetMapping
-    fun getAllTasks(@PageableDefault pageParams: Pageable) = taskService.getAllTasks(pageParams)
+    fun getAllTasks(@PageableDefault(sort = ["id"]) pageParams: Pageable) = taskService.getAllTasks(pageParams)
 }
