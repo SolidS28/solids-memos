@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 @RequestMapping("/tasks")
@@ -17,7 +18,7 @@ class TaskController(
     fun createTask(@RequestBody taskRequestDto: TaskRequestDto) = taskService.createTask(taskRequestDto)
 
     @GetMapping("/{id}")
-    fun getTask(@PathVariable id: Long) = taskService.getTask(id)
+    fun getTask(@PathVariable id: UUID) = taskService.getTask(id)
 
     @GetMapping
     fun getAllTasks(@PageableDefault(sort = ["id"]) pageParams: Pageable) = taskService.getAllTasks(pageParams)

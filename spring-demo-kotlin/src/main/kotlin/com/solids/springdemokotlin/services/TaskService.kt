@@ -10,6 +10,7 @@ import com.solids.springdemokotlin.utils.isValidUrl
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class TaskService(
@@ -22,7 +23,7 @@ class TaskService(
         TaskResponseDto(taskRepository.save(taskRequestDto.toEntity()))
     }
 
-    fun getTask(id: Long) = taskRepository.findByIdOrNull(id)
+    fun getTask(id: UUID) = taskRepository.findByIdOrNull(id)
         ?: throw NotFoundException(Task::class.simpleName!!, "(id=$id)")
 
     fun getAllTasks(pageParams: Pageable) = taskRepository.findAll(pageParams)
