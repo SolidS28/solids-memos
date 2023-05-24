@@ -1,11 +1,13 @@
 package com.solids.springdemokotlin.enitites
 
 import com.solids.springdemokotlin.utils.ZERO_UUID
+import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.GenericGenerator
-import java.util.UUID
+import org.hibernate.annotations.UpdateTimestamp
+import java.time.Instant
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
@@ -16,4 +18,9 @@ class Task(
     val id: UUID = ZERO_UUID,
     val message: String,
     val url: String?
-)
+) {
+    @CreationTimestamp
+    val createdAt: Instant = Instant.MIN
+    @UpdateTimestamp
+    val updatedAt: Instant = Instant.MIN
+}
