@@ -17,10 +17,9 @@ class Hero(
     @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
     val id: UUID = ZERO_UUID,
     val nickname: String,
-    val experience: Long,
-) {
+    val experience: Long = 0,
     @CreationTimestamp
-    val createdAt: Instant = Instant.MIN
+    val createdAt: Instant = Instant.MIN,
     @UpdateTimestamp
     val updatedAt: Instant = Instant.MIN
-}
+)

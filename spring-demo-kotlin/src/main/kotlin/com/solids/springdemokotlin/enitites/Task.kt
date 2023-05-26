@@ -11,16 +11,15 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-class Task(
+data class Task(
     @Id
     @GeneratedValue(generator = "uuid-hibernate-generator")
     @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
     val id: UUID = ZERO_UUID,
     val message: String,
-    val url: String?
-) {
+    val url: String? = null,
     @CreationTimestamp
-    val createdAt: Instant = Instant.MIN
+    val createdAt: Instant = Instant.MIN,
     @UpdateTimestamp
     val updatedAt: Instant = Instant.MIN
-}
+)

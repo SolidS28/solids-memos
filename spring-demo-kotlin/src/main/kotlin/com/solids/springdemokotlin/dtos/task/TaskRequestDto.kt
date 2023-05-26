@@ -1,8 +1,10 @@
 package com.solids.springdemokotlin.dtos.task
 
-import com.solids.springdemokotlin.enitites.Task
+import javax.validation.constraints.NotEmpty
 
-data class TaskRequestDto(override val message: String, override val url: String?) : TaskBaseDto(message, url) {
-    fun toEntity() = Task(message = message, url = url)
-    // TODO move to converter class to uncouple
-}
+data class TaskRequestDto(
+    @NotEmpty
+    override val message: String,
+    @NotEmpty
+    override val url: String?
+) : TaskBaseDto(message, url)
