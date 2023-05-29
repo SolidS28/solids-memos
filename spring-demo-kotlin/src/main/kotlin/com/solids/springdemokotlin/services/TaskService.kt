@@ -21,14 +21,14 @@ class TaskService(
         if (taskRequestDto.url != null && !isValidUrl(taskRequestDto.url)) {
             throw BadRequestException("The url provided is not valid")
         }
-        val taskEntity = convert(taskRequestDto, Task(message = ""))
-        return convert(taskRepository.save(taskEntity), TaskResponseDto())
+        val taskEntity = convert<Task>(taskRequestDto)
+        return convert<TaskResponseDto>(taskRepository.save(taskEntity))
     }
 
     fun getTask(id: UUID): TaskResponseDto {
         val taskEntity = taskRepository.findByIdOrNull(id)
             ?: throw NotFoundException(Task::class.simpleName!!, "(id=$id)")
-        return convert(taskEntity, TaskResponseDto())
+        return convert<TaskResponseDto>(taskEntity)
     }
 
     fun getAllTasks(pageParams: Pageable) = taskRepository.findAll(pageParams)

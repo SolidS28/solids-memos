@@ -10,7 +10,8 @@ import org.springframework.beans.BeanUtils
 // Finally it could be considered to create a "link" between entity and dto but that's what I want to decouple, they should not be coupled
 // TL;DR services could find the converters here, it's not forced as a high-level function step but just as an implicit step
 
-fun<S, T> convert(source: S, target: T): T {
-    BeanUtils.copyProperties(source as Any, target as Any)
+inline fun<reified T: Any> convert(source: Any): T {
+    val target = BeanUtils.instantiateClass(T::class.java)
+    BeanUtils.copyProperties(source, target)
     return target
 }

@@ -1,15 +1,14 @@
 package com.solids.springdemokotlin.dtos.task
 
-import com.solids.springdemokotlin.utils.ZERO_UUID
+import com.solids.springdemokotlin.utils.NoArg
 import java.time.Instant
 import java.util.*
 
+@NoArg
 data class TaskResponseDto(
-    val id: UUID,
-    override val message: String,
-    override val url: String?,
-    val createdAt: Instant,
-    val updatedAt: Instant
-): TaskBaseDto(message, url) {
-    constructor() : this(ZERO_UUID, "", null, Instant.MIN, Instant.MIN)
-}
+    var id: UUID,
+    override var message: String,
+    override var url: String?,
+    var createdAt: Instant,
+    var updatedAt: Instant?
+): TaskBaseDto(message, url)
